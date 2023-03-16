@@ -1,0 +1,51 @@
+To pull the official image:
+docker pull httpd
+or 
+docker pull <dockerhub: chaitanyagadve/trial:imagename>
+
+To display images:
+docker images
+
+To create container:
+docker container create -d --name=<c_name> httpd
+or
+docker container create --name=<c_name> -p <ports> <dockerhub address>
+Eg: docker container create --name=vadapav -p 9090:80 kharatramesh/vadapavimages
+
+To start container:
+docker start <container_name>
+
+To stop container:
+docker stop <container_name>
+
+To see all the containers:
+docker ps -a
+
+To remove a container:
+docker rm -f <container_name>
+
+To remove all the containers in one go:
+docker ps -a -q
+docker rm -f $(docker ps -a -q)
+
+To remove images locally stored:
+docker rmi httpd
+
+To search a particular image:
+docker search mysql
+docker search php
+docker search mysql --limit 5
+docker search mysql -f is-official=true                               //more filters
+docker search mysql -f is-official=true -f stars=700                  //Shows image which are official and with stars above 700
+
+To inspect a container and grep is used to get the ipaddress:
+docker inspect c1 | grep -i ipaddress
+
+curl "172.17.0.2":80
+
+docker exec -it c1 bash             //This is a execute command
+
+Creating MySQL:
+docker run -d --name=db1 -e MYSQL_ROOT_PASSWORD=123 -e MYSQL_DATABASE=try -p 3309:3306 mysql
+docker exec -it db1 bash
+mysql -u root -p
